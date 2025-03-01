@@ -1,11 +1,11 @@
-package Aula02;
+package EstruturaDeDados.Unifor.Aula02.domain;
 
-public class PublicStatic {
+public class StaticList {
     public int numberOfElements;
     public int capacity;
     public int[] vector;
 
-    public PublicStatic(int cap) {
+    public StaticList(int cap) {
         vector = new int[cap];
         numberOfElements = 0;
         capacity = cap;
@@ -17,6 +17,18 @@ public class PublicStatic {
 
     public boolean isEmpty() {
         return numberOfElements == 0;
+    }
+
+    //Imprime a lista na tela
+    public void showList() {
+        System.out.println("Lista: ");
+        for (int i = 0; i < numberOfElements; i++) {
+            System.out.println(vector[i]);
+            if (i < numberOfElements - 1) {
+                System.out.println(" ");
+            }
+        }
+        System.out.println();
     }
 
 
@@ -60,7 +72,34 @@ public class PublicStatic {
         }
 
         int removedElement = vector[0];
-        for (int i = 1; i < numberOfElements; i--) {
+        for (int i = 1; i < numberOfElements; i++) {
+            vector[i - 1] = vector[i];
+        }
+        numberOfElements--;
+        return removedElement;
+    }
+
+    //Adiciona um elemento numa posição específica da lista
+    public void insertPosition(int element, int pos) {
+        if (isFull()) {
+            System.out.println("A lista está cheia!");
+            return;
+        }
+        for (int i = numberOfElements; i < pos; i--) {
+            vector[i] = vector[i - 1];
+        }
+        vector[pos] = element;
+        numberOfElements++;
+
+    }
+
+    //Remove um elemento na posição específica da lista
+    public int removePosition(int pos) {
+        if (isEmpty()) {
+            System.out.println("A lisa está vazia!");
+        }
+        int removedElement = vector[pos];
+        for (int i = pos + 1; i < numberOfElements ; i++) {
             vector[i - 1] = vector[i];
         }
         numberOfElements--;
@@ -68,4 +107,3 @@ public class PublicStatic {
     }
 }
 
-p
